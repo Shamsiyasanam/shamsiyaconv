@@ -2,7 +2,15 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Define the endpoint for Dialogflow fulfillment
+# Route to return student number in JSON format
+@app.route('/')
+def student_number():
+    student_info = {
+        'student_number': '200564793'  # Your actual student number
+    }
+    return jsonify(student_info)
+
+# Route for Dialogflow fulfillment
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
